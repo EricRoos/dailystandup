@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_004259) do
+ActiveRecord::Schema.define(version: 2020_04_09_013416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
 
   create_table "team_members", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -22,6 +32,14 @@ ActiveRecord::Schema.define(version: 2020_04_09_004259) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_team_members_on_team_id"
     t.index ["user_id"], name: "index_team_members_on_user_id"
+  end
+
+  create_table "team_members_roles", id: false, force: :cascade do |t|
+    t.bigint "team_member_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_team_members_roles_on_role_id"
+    t.index ["team_member_id", "role_id"], name: "index_team_members_roles_on_team_member_id_and_role_id"
+    t.index ["team_member_id"], name: "index_team_members_roles_on_team_member_id"
   end
 
   create_table "teams", force: :cascade do |t|

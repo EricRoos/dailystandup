@@ -3,17 +3,35 @@
   <h3><%= @team.name %></h3>
 </div>
 <hr/>
-
+<% can_manage_team = can_manage_team?(@team, current_user) %>
 <div id='team-members'>
   <h4>Team Members</h4>
   <ul>
-    <% @team.team_members.each do |team_member| %>
-      <li><%= team_member.user.email %></li>
+    <% @team_members.each do |team_member| %>
+      <li>
+        <div class='team-member-info'>
+        <span class='team-member-name'>
+          <%= team_member.user.email %>
+        </span>
+        <span class='roles'>
+          <% if can_manage_team %>
+            (<%= team_member.roles.pluck(:name).join(", ") %>)
+          <% end %>
+        </span>
+        </div>
+        <div class='team-member-actions'>
+          <% if can_manage_team && team_member.user != current_user %>
+            <%= link_to 'Delete', team_team_member_path(@team, team_member), method: 'DELETE' %>
+          <% end %>
+        </div>
+      </li>
     <% end %>
-    <li id='new-team-member'>
-      <h5>Add Team Member</h4>
-      <%= render partial: 'team_members/form', locals: { team_member: TeamMember.new(team: @team) }  %>
-    </li>
+    <% if can_manage_team %>
+      <li id='new-team-member'>
+        <h5>Add Team Member</h4>
+        <%= render partial: 'team_members/form', locals: { team_member: TeamMember.new(team: @team) }  %>
+      </li>
+    <% end %>
   </ul>
 </div>
 

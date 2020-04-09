@@ -57,7 +57,7 @@ class TeamMembersController < ApplicationController
   def destroy
     @team_member.destroy
     respond_to do |format|
-      format.html { redirect_to team_members_url, notice: 'Team member was successfully destroyed.' }
+      format.html { redirect_to team_path(@team), notice: 'Team member was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

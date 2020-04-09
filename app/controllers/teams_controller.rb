@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @team_members = @team.team_members.includes(:roles, :user)
   end
 
   # GET /teams/new
@@ -27,7 +28,9 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     Team.transaction do
       @team.save
-      @team.team_members << TeamMember.new(user: current_user)
+      new_team_member = TeamMember.new(user: current_user)
+      @team.team_members << new_team_member
+      new_team_member.add_role(:owner)
     end
     respond_to do |format|
       if @team.persisted?
