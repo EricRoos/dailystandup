@@ -1,9 +1,22 @@
 <p id="notice"><%= notice %></p>
+<div>
+  <h3><%= @team.name %></h3>
+</div>
+<hr/>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+<div id='team-members'>
+  <h4>Team Members</h4>
+  <ul>
+    <% @team.team_members.each do |team_member| %>
+      <li><%= team_member.user.email %></li>
+    <% end %>
+    <li id='new-team-member'>
+      <h5>Add Team Member</h4>
+      <%= render partial: 'team_members/form', locals: { team_member: TeamMember.new(team: @team) }  %>
+    </li>
+  </ul>
+</div>
+
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
