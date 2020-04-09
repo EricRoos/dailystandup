@@ -20,14 +20,14 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= Rails.application.credentials.config[:database][:name] %>
+  port: <%= Rails.application.credentials.config[:database][:port] %>
+  user: <%= Rails.application.credentials.config[:database][:user] %>
+  host: <%= Rails.application.credentials.config[:database][:host] %>
+  password: <%= Rails.application.credentials.config[:database][:password] %>
 
 development:
   <<: *default
-  database: dailystandup_development
-  port: 15432
-  user: postgres
-  host: 0.0.0.0
-  password: mysecretpassword
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -84,6 +84,3 @@ test:
 #
 production:
   <<: *default
-  database: dailystandup_production
-  username: dailystandup
-  password: <%= ENV['DAILYSTANDUP_DATABASE_PASSWORD'] %>

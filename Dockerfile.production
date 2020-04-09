@@ -1,0 +1,23 @@
+FROM ruby:2.7.0
+ENV RAILS_ENV=production
+RUN mkdir /app
+COPY Gemfile.lock /app
+COPY Gemfile /app
+COPY package.json /app
+WORKDIR /app
+RUN gem install bundler:2.1.4
+RUN bundle install --without development test
+
+COPY . /app
+
+RUN apt-get update -yq \
+    && apt-get install curl gnupg -yq \
+    && curl -sL https://deb.nodesource.com/setup_13.x | bash \
+    && apt-get install nodejs -yq \
+    && npm install yarn
+RUN bundle exec rake assets:precompile
+
+EXPOSE 3000
+ENV RAILS_LOG_TO_STDOUT=true
+CMD bundle exec rails s -p 3000
+
