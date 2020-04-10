@@ -1,0 +1,40 @@
+button, input[type='submit']{
+  @apply p-4;
+  @apply bg-green-600;
+  @apply text-white;
+  @apply shadow;
+  @apply capitalize;
+}
+
+button, input[type='submit']:hover{
+  @apply bg-green-700;
+  @apply cursor-pointer;
+  @apply text-gray-100;
+}
+
+input[type='text']{
+  @apply bg-gray-100;
+  @apply border-b-2;
+  @apply border-solid;
+  @apply block;
+  @apply mb-2;
+  @apply h-12;
+}
+
+form{
+  @apply flex;
+  @apply flex-col;
+  @apply text-center;
+}
+
+form .field{
+  @apply flex;
+  @apply flex-col;
+  @apply text-center;
+}
+
+form .field label{
+  @apply text-left;
+  @apply text-gray-700;
+}
+

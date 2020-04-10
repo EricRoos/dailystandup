@@ -1,0 +1,27 @@
+#team-members{
+  @apply grid;
+  @apply grid-cols-5;
+  @apply gap-4;
+}
+
+#team-members .team-member-name{
+  @apply text-xl;
+}
+
+
+.team-member-tile{
+  @apply border;
+  @apply border-solid;
+  @apply flex;
+  @apply flex-col;
+  @apply text-center;
+  @apply p-3;
+  @apply items-center;
+}
+
+.team-member-tile input[type='submit']{
+  @apply flex;
+  @apply flex-col;
+  @apply text-center;
+  @apply w-full;
+}
