@@ -1,5 +1,5 @@
 FROM ruby:2.7.0
-
+ARG RAILS_MASTER_KEY
 RUN apt-get update -yq \
     && apt-get install curl gnupg -yq \
     && curl -sL https://deb.nodesource.com/setup_13.x | bash \
@@ -25,7 +25,7 @@ RUN yarn install
 
 
 COPY . /app
-RUN bundle exec rake assets:precompile
+RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
 
 EXPOSE 3000
 CMD bundle exec rails s -p 3000

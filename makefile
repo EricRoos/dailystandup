@@ -1,4 +1,10 @@
 build:
-	docker build . -f Dockerfile.production -t dailystandup
+	docker build . --build-arg RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} -f Dockerfile.production -t dailystandup
 run:
-	docker run -p 4000:3000 --link=some-postgres:postgres --rm -ti dailystandup:latest
+	docker run -p 4000:3000 -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --link=${POSTGRES_HOST}:postgres --rm -ti dailystandup:latest
+create_db:
+	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --link=${POSTGRES_HOST}:postgres --rm -ti dailystandup:latest bundle exec rake db:create
+migrate_db:
+	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --link=${POSTGRES_HOST}:postgres --rm -ti dailystandup:latest bundle exec rake db:migrate
+edit_secrets:
+	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --link=${POSTGRES_HOST}:postgres --rm -ti dailystandup:latest bundle exec rails credentials:edit --environment=production
