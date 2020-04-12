@@ -1,0 +1,57 @@
+.member-tile {
+  @apply col-span-3;
+  @apply shadow;
+  @apply grid;
+  height: 300px;
+  @apply grid-rows-6;
+}
+
+.member-tile .top{
+  @apply row-span-4;
+  background-color: green;
+  position: relative;
+}
+
+.member-tile .top .avatar{
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  z-index: 2;
+  background-color: red;
+  bottom: -25px;
+  border-radius: 100%;
+  right: 0;
+}
+
+.member-tile .top .member-name{
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(0,0,0,.25);
+  top: 1em;
+  font-size: 2em;
+  color: white;
+  text-align: right;
+  right: 0;
+}
+
+.member-tile .bottom{
+  @apply row-span-2;
+  @apply grid;
+  @apply grid-rows-2;
+}
+
+.member-tile .bottom .title{
+  @apply flex;
+  @apply items-center;
+}
+.member-tile .bottom .title span{
+  font-size: 1.25em;
+  margin-left: 2em;
+}
+
+.member-tile .bottom .icons{
+  font-size: 1em;
+  margin-left: auto;
+  padding-right: 2em;
+}

@@ -5,4 +5,5 @@
 @import "tailwindcss/utilities";
 
 @import "common.css";
-@import "team-members.css";
+
+@import "../components/styles.css";
