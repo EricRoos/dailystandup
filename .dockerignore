@@ -1,1 +1,5 @@
 Dockerfile.production
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore
