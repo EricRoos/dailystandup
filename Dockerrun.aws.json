@@ -1,0 +1,12 @@
+{
+  "Image": {
+    "Name": "ericroos13/dailystandup"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 3000,
+      "HostPort": 80
+    }
+  ]
+}
+   
