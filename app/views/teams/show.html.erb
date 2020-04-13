@@ -1,31 +1,21 @@
 <p id="notice"><%= notice %></p>
 <div>
-  <h3><%= @team.2name %></h3>
+  <h3><%= @team.name %></h3>
 </div>
 <hr/>
 <% can_manage_team = can_manage_team?(@team, current_user) %>
 <h3>Team Members</h3>
-<div id='team-members'>
+<div id='team-members' class='grid grid-cols-12 gap-12'>
   <% @team_members.each do |team_member| %>
-    <div class='team-member-tile'>
-      <div class='team-member-avatar'>
-        <img src='https://place-hold.it/100x100' />
-      </div>
-      <div class='team-member-name'>
-        <%= team_member.user.email %>
-      </div>
-      <div class='team-member-actions'>
-        <% if can_manage_team && team_member.user != current_user %>
-          <%= link_to 'Delete', team_team_member_path(@team, team_member), method: 'DELETE' %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-  <% if can_manage_team %>
-    <div id='new-team-member' class='team-member-tile'>
-      <h5>Add Team Member</h4>
-      <%= render partial: 'team_members/form', locals: { team_member: TeamMember.new(team: @team) }  %>
-    </div>
+    <%= render partial: 'react/component', locals: {
+      component_name: 'MemberTile',
+      props: {
+        name: 'Matt H.',
+        title: 'Developer',
+        avatar_url: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi.imgur.com%2FzfgDtzY.jpg&f=1&nofb=1',
+        accent_url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F89%2F5b%2F28%2F895b281b1d2dd8cca4c98baaf2dcd972.jpg&f=1&nofb=1'
+      }
+    }%>
   <% end %>
 </div>
 

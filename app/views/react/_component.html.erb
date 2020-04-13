@@ -1,0 +1,5 @@
+<% uuid = SecureRandom.hex(32) %>
+<div class='member-tile-container' data-react-rails-id="<%= uuid %>"></div>
+<script>
+  window.renderReactComponent("<%= component_name %>", JSON.parse(atob("<%=j Base64.encode64(props.to_json) %>")), "*[data-react-rails-id='<%= uuid %>'")
+</script>

@@ -1,40 +1,45 @@
-.member-tile {
+.member-tile-container{
   @apply col-span-3;
-  @apply shadow;
-  @apply grid;
-  height: 300px;
   @apply grid-rows-6;
+}
+.member-tile {
+  @apply shadow;
+  @apply bg-white;
+  height: 350px;
+  @apply grid;
 }
 
 .member-tile .top{
   @apply row-span-4;
-  background-color: green;
-  position: relative;
+  @apply relative;
 }
 
-.member-tile .top .avatar{
-  height: 60px;
-  width: 60px;
-  position: absolute;
+.member-tile .top .avatar img{
+  @apply absolute;
+  height: 80px;
+  width: 80px;
   z-index: 2;
-  background-color: red;
-  bottom: -25px;
-  border-radius: 100%;
+  bottom: -40px;
   right: 0;
+  border-radius: 100%;
 }
 
 .member-tile .top .member-name{
+  @apply absolute;
+  @apply text-white;
+  @apply text-right;
   width: 100%;
-  position: absolute;
   z-index: 2;
-  background-color: rgba(0,0,0,.25);
-  top: 1em;
-  font-size: 2em;
-  color: white;
-  text-align: right;
+  background-color: rgba(0,0,0,.60);
+  top: .5em;
+  font-size: 2.75em;
   right: 0;
 }
 
+.member-tile .top .accent-image{
+  height: 100%;
+  width: auto%;
+}
 .member-tile .bottom{
   @apply row-span-2;
   @apply grid;
@@ -43,15 +48,18 @@
 
 .member-tile .bottom .title{
   @apply flex;
-  @apply items-center;
+  @apply items-end;
 }
 .member-tile .bottom .title span{
-  font-size: 1.25em;
-  margin-left: 2em;
+  font-size: 1.75em;
+  margin-left: .5em;
 }
 
 .member-tile .bottom .icons{
-  font-size: 1em;
+  font-size: 1.25em;
   margin-left: auto;
-  padding-right: 2em;
+  @apply flex;
+  @apply justify-around;
+  @apply items-center;
+  width: 50%;
 }

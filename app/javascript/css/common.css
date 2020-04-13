@@ -1,3 +1,13 @@
+body {
+  background-color: #f1f4f5;
+}
+
+main {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 button, input[type='submit']{
   @apply p-4;
   @apply bg-green-600;
@@ -37,4 +47,5 @@ form .field label{
   @apply text-left;
   @apply text-gray-700;
 }
+
 
