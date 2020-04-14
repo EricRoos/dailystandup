@@ -26,6 +26,7 @@ RUN yarn install
 
 COPY . /app
 RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
+RUN rm -rf node_modules/
 
 EXPOSE 3000
 CMD bundle exec rails s -p 3000

@@ -2,6 +2,8 @@ build:
 	docker build . --build-arg RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} -f Dockerfile.production -t dailystandup
 run:
 	docker run -p 4000:3000 -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest
+bash:
+	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bash
 create_db:
 	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bundle exec rake db:create
 migrate_db:
