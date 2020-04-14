@@ -6,5 +6,7 @@ create_db:
 	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bundle exec rake db:create
 migrate_db:
 	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bundle exec rake db:migrate
-bash:
-	docker run -e EDITOR=nano -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bash
+push_image:
+	docker tag dailystandup:latest ericroos13/dailystandup && docker tag dailystandup:latest ericroos13/dailystandup && docker push ericroos13/dailystandup
+deploy:
+	eb deploy

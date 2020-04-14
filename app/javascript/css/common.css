@@ -48,4 +48,47 @@ form .field label{
   @apply text-gray-700;
 }
 
+#front-page-banner-lg {
+  @apply text-white;
+  @apply p-5;
+  @apply shadow-xl;
+  @apply grid;
+  @apply grid-rows-6;
+  @apply grid-cols-2;
 
+  height: 85vh;
+  background-color: #084d54;
+  font-size: 72px;
+}
+
+#front-page-banner-lg div.top {
+  @apply row-span-4;
+  @apply col-span-2;
+}
+
+#front-page-banner-lg div.top img{
+  @apply ml-auto;
+  @apply mr-auto;
+}
+
+#front-page-banner-lg div.left {
+  @apply row-span-2;
+  @apply col-span-1;
+  @apply flex;
+  align-items: end;
+}
+#front-page-banner-lg div.right {
+  @apply row-span-2;
+  @apply col-span-1;
+  @apply flex;
+  align-items: end;
+  justify-content: center;
+  font-size: 24px;
+}
+
+#front-page-banner-lg div.left .content {
+}
+
+#front-page-banner-lg div.right .content {
+  width: 100%;
+}
