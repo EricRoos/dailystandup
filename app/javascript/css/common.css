@@ -3,6 +3,10 @@ body {
 }
 
 main {
+  background-color: #f1f4f5;
+}
+
+main {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -40,7 +44,6 @@ form .field label{
   @apply grid-cols-2;
   height: 85vh;
   font-size: 72px;
-  background-color: #f1f4f5;
 }
 
 #front-page-banner-lg div.top {
