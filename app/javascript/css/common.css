@@ -1,5 +1,5 @@
 body {
-  background-color: #f1f4f5;
+  background-color: #00459d;
 }
 
 main {
@@ -9,56 +9,38 @@ main {
 }
 
 button, input[type='submit']{
-  @apply p-4;
-  @apply bg-green-600;
+  @apply pl-2;
   @apply text-white;
   @apply shadow;
   @apply capitalize;
+  background-color: black;
 }
 
 button, input[type='submit']:hover{
-  @apply bg-green-700;
   @apply cursor-pointer;
   @apply text-gray-100;
 }
 
 input[type='text']{
-  @apply bg-gray-100;
-  @apply border-b-2;
-  @apply border-solid;
-  @apply block;
-  @apply mb-2;
-  @apply h-12;
 }
 
 form{
-  @apply flex;
-  @apply flex-col;
-  @apply text-center;
 }
 
 form .field{
-  @apply flex;
-  @apply flex-col;
-  @apply text-center;
 }
 
 form .field label{
-  @apply text-left;
-  @apply text-gray-700;
 }
 
 #front-page-banner-lg {
-  @apply text-white;
   @apply p-5;
-  @apply shadow-xl;
   @apply grid;
   @apply grid-rows-6;
   @apply grid-cols-2;
-
   height: 85vh;
-  background-color: #084d54;
   font-size: 72px;
+  background-color: #f1f4f5;
 }
 
 #front-page-banner-lg div.top {
@@ -69,6 +51,8 @@ form .field label{
 #front-page-banner-lg div.top img{
   @apply ml-auto;
   @apply mr-auto;
+  max-height: 100%;
+  width: auto;
 }
 
 #front-page-banner-lg div.left {
@@ -91,4 +75,9 @@ form .field label{
 
 #front-page-banner-lg div.right .content {
   width: 100%;
+  margin-bottom: 20px;
+}
+#start-now {
+  @apply w-full;
+  @apply shadow-xl;
 }
