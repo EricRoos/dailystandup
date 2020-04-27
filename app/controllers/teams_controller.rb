@@ -27,6 +27,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     Team.transaction do
+      @team.build_survey.populate_questions
       @team.save
       new_team_member = TeamMember.new(user: current_user)
       @team.team_members << new_team_member

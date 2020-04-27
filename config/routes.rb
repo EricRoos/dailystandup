@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :surveys
   resources :teams do
     resources :team_members
   end
