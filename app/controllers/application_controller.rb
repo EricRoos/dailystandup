@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_raven_context
+  layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -15,6 +16,14 @@ class ApplicationController < ActionController::Base
     if Rails.env.production?
       Raven.user_context(id: session[:current_user_id]) # or anything else in session
       Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+    end
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
     end
   end
 end
