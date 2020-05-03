@@ -5,20 +5,33 @@ body {
 main {
 }
 
-button, input[type='submit']{
-  @apply pl-2;
-  @apply text-white;
+
+input[type='text'], input[type='email'], input[type='password'], input[type='number']{
+  @apply px-3;
+  @apply py-3;
+  @apply text-gray-700;
+  @apply bg-white;
+  @apply rounded;
+  @apply text-sm;
   @apply shadow;
-  @apply capitalize;
-  background-color: black;
+  @apply w-full;
 }
 
-button, input[type='submit']:hover{
-  @apply cursor-pointer;
-  @apply text-gray-100;
-}
+input[type='submit']{
+  @apply bg-gray-900;
+  @apply text-white;
+  @apply text-sm;
+  @apply font-bold;
+  @apply uppercase;
+  @apply px-6;
+  @apply py-3;
+  @apply rounded;
+  @apply shadow;
+  @apply outline-none;
+  @apply mr-1;
+  @apply mb-1;
+  @apply w-full;
 
-input[type='text']{
 }
 
 form{
