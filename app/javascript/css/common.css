@@ -1,15 +1,8 @@
 body {
-  background-color: #00459d;
+ @apply bg-gray-900;
 }
 
 main {
-  background-color: #f1f4f5;
-}
-
-main {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 button, input[type='submit']{
