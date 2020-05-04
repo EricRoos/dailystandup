@@ -1,4 +1,21 @@
 <%= render layout: "layouts/shared/common" do %>
   <%= render partial: 'layouts/shared/header' %>
+	<div class="flex flex-col">
+    <% if flash[:warning] %> 
+      <%= render partial: 'layouts/shared/flash_card', locals: { variant: :warning, text: { header: nil, body: flash[:warning] } } %>
+    <% end %>
+
+    <% if flash[:success] %> 
+      <%= render partial: 'layouts/shared/flash_card', locals: { variant: :success, text: { header: nil, body: flash[:success] } } %>
+    <% end %>
+
+    <% if flash[:notice] %> 
+      <%= render partial: 'layouts/shared/flash_card', locals: { variant: :notice, text: { header: nil, body: flash[:notice] } } %>
+    <% end %>
+
+    <% if flash[:error] %> 
+      <%= render partial: 'layouts/shared/flash_card', locals: { variant: :error, text: { header: nil, body: flash[:error] } } %>
+		<% end %>
+	</div>
   <%= yield %>
 <% end %>
