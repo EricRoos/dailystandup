@@ -5,7 +5,11 @@ body.devise {
 main {
 }
 
-
+#nav-logo{
+  width: 150px;
+  height: auto;
+  display: inline;
+}
 input[type='text'], input[type='email'], input[type='password'], input[type='number']{
   @apply px-3;
   @apply py-3;

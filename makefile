@@ -12,3 +12,5 @@ push_image:
 	docker tag dailystandup:latest ericroos13/dailystandup && docker tag dailystandup:latest ericroos13/dailystandup && docker push ericroos13/dailystandup
 deploy:
 	eb deploy
+deploy_pipeline:
+	make build push_image migrate_db deploy
