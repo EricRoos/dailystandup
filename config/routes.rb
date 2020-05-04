@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :surveys
   resources :teams do
+    resources :standup_reports
     resources :team_members
   end
   devise_for :users

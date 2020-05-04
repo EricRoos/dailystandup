@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_014849) do
+ActiveRecord::Schema.define(version: 2020_05_04_025853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,29 @@ ActiveRecord::Schema.define(version: 2020_04_27_014849) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
+  create_table "standup_reports", force: :cascade do |t|
+    t.bigint "team_member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_member_id"], name: "index_standup_reports_on_team_member_id"
+  end
+
   create_table "survey_questions", force: :cascade do |t|
     t.bigint "survey_id", null: false
     t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["survey_id"], name: "index_survey_questions_on_survey_id"
+  end
+
+  create_table "survey_responses", force: :cascade do |t|
+    t.bigint "standup_report_id", null: false
+    t.bigint "survey_question_id", null: false
+    t.text "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["standup_report_id"], name: "index_survey_responses_on_standup_report_id"
+    t.index ["survey_question_id"], name: "index_survey_responses_on_survey_question_id"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -78,7 +95,10 @@ ActiveRecord::Schema.define(version: 2020_04_27_014849) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "standup_reports", "team_members"
   add_foreign_key "survey_questions", "surveys"
+  add_foreign_key "survey_responses", "standup_reports"
+  add_foreign_key "survey_responses", "survey_questions"
   add_foreign_key "surveys", "teams"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
