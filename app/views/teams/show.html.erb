@@ -1,9 +1,11 @@
 <div class="grid grid-cols-1 gap-6 my-6 px-4 md:px-6 lg:px-8">
-  <h1><%= @team.name %></h1>
   <% can_manage_team = can_manage_team?(@team, current_user) %>
-  <% if can_manage_team %>
-    <%= link_to 'Edit', edit_team_path(@team) %>
-  <% end %>
+  <h1>
+    <%= @team.name %>
+    <% if can_manage_team %>
+      <small>( <%= link_to 'Edit', edit_team_path(@team) %> )</small>
+    <% end %>
+  </h1>
   <h2>Activity Feed</h2>
   <div class="max-w-xl mx-auto px-4 py-4 bg-white shadow-md rounded-lg">
     <div class="py-2 flex flex-row items-center justify-between">
