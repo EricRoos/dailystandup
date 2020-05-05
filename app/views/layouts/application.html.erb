@@ -17,5 +17,7 @@
       <%= render partial: 'layouts/shared/flash_card', locals: { variant: :error, text: { header: nil, body: flash[:error] } } %>
 		<% end %>
 	</div>
-  <%= yield %>
+  <div class="container mx-auto px-4 sm:px-8">
+    <%= yield %>
+  </div>
 <% end %>
