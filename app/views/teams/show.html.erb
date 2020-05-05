@@ -1,13 +1,13 @@
 <% can_manage_team = can_manage_team?(@team, current_user) %>
-<div class='flex'>
-  <div>
+<div class='bg-gray-300 py-2 px-2 rounded shadow'>
+  <div class='w-full'>
     <h1>
       <%= @team.name %>
       <% if can_manage_team %>
       <% end %>
     </h1>
   </div>
-  <div class='ml-auto'>
+  <div class=''>
     <%= link_to new_team_standup_report_path(@team), class:"bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center" do %>
       <span class="mr-2">Perform Standup</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
