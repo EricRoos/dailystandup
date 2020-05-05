@@ -20,38 +20,5 @@
   <hr />
 </div>
 <h2>Activity Feed</h2>
-<div class="mx-auto max-w-4xl px-4 py-4 bg-white shadow-md rounded-lg">
-  <div class="py-2 flex flex-row items-center justify-between">
-    <div class="flex flex-row items-center">
-      <a href="#" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
-      <img class="rounded-full h-16 w-16 object-cover" src="https://images.unsplash.com/photo-1520065786657-b71a007dd8a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80" alt="">
-      <h4 class="ml-2">Jon Doe</h4>
-      </a>
-    </div>
-    <div class="flex flex-row items-center">
-      <p class="text-xs font-semibold text-gray-500">2 hours ago</p>
-    </div>
-  </div>
-  <div class="mt-2">
-    <div class="py-2 flex flex-row items-center">
-      <button class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-      <span class="ml-1">0</span>
-      </button>
-    </div>
-  </div>
-  <div class="py-2">
-    <h3>What did you do yesterday</h3>
-    <p class="leading-snug">
-      I did x y and z.
-    </p>
-    <h3>What are you planning to do today?</h3>
-    <p class="leading-snug">
-      I am doing this that and the other. 
-    </p>
-    <h3>What are your blockers</h3>
-    <p class="leading-snug">
-      no blockers.
-    </p>
-  </div>
-</div>
+<%= render partial: 'standup_reports/standup_report' %>
+<%= render partial: 'standup_reports/standup_report' %>
