@@ -11,6 +11,9 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team_members = @team.team_members.includes(:roles, :user)
+    @standup_reports = StandupReport.includes(survey_responses: [ :survey_question ] )
+      .where(team_member_id: @team.team_members)
+      .order(created_at: :desc)
   end
 
   # GET /teams/new

@@ -3,11 +3,11 @@
     <div class="flex flex-row items-center">
       <a href="#" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
       <img class="rounded-full h-16 w-16 object-cover" src="https://images.unsplash.com/photo-1520065786657-b71a007dd8a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80" alt="">
-      <h4 class="ml-2">Jon Doe</h4>
+      <h4 class="ml-2"><%= standup_report.team_member.full_name %></h4>
       </a>
     </div>
     <div class="flex flex-row items-center">
-      <p class="text-xs font-semibold text-gray-500">2 hours ago</p>
+      <p class="text-xs font-semibold text-gray-500"><%= time_ago_in_words(standup_report.created_at) %></p>
     </div>
   </div>
   <div class="mt-2">
@@ -19,17 +19,11 @@
     </div>
   </div>
   <div class="py-2">
-    <h3>What did you do yesterday</h3>
-    <p class="leading-snug">
-      I did x y and z.
-    </p>
-    <h3>What are you planning to do today?</h3>
-    <p class="leading-snug">
-      I am doing this that and the other. 
-    </p>
-    <h3>What are your blockers</h3>
-    <p class="leading-snug">
-      no blockers.
-    </p>
+    <% standup_report.survey_responses.each do |survey_response| %>
+      <h3><%= survey_response.survey_question.text %></h3>
+      <p class="leading-snug">
+        <%= survey_response.answer %>
+      </p>
+    <% end %>
   </div>
 </div>
