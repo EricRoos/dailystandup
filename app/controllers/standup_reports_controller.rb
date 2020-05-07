@@ -1,5 +1,5 @@
 class StandupReportsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy, :create]
 
   # GET /teams
   # GET /teams.json
@@ -15,6 +15,7 @@ class StandupReportsController < ApplicationController
 
   # GET /teams/new
   def new
+    @standup_report = StandupReport.build_report(TeamMember.last)
   end
 
   # GET /teams/1/edit
@@ -24,15 +25,11 @@ class StandupReportsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(team_params)
-    @team.build_survey.populate_questions
-    @team.save
-    new_team_member = TeamMember.new(user: current_user)
-    @team.team_members << new_team_member
-    new_team_member.add_role(:owner)
     respond_to do |format|
-      if @team.persisted?
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+      @standup_report = StandupReport.new(standup_report_params)
+      @standup_report.team_member = TeamMember.where(user_id: current_user.id, team_id: @team.id).first
+      if @standup_report.save
+        format.html { redirect_to @team, notice: 'Standup Report was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new }
@@ -68,11 +65,11 @@ class StandupReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
-      @team = Team.find(params[:id])
+      @team = Team.find(params[:team_id])
     end
 
     # Only allow a list of trusted parameters through.
-    def team_params
-      params.require(:team).permit(:name)
+    def standup_report_params
+      params.require(:standup_report).permit(survey_responses_attributes: [ :survey_question_id, :answer ] )
     end
 end
