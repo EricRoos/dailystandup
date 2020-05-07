@@ -8,6 +8,10 @@ class TeamMember < ApplicationRecord
 
   delegate :full_name, to: :user
 
+  def can_perform_standup?
+    standup_reports.where("DATE(created_at) >= ?", Time.now.to_date).count == 0
+  end
+
   def assign_default_role
     self.add_role(:member) if self.roles.blank?
   end

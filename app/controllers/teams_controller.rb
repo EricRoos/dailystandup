@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team_members = @team.team_members.includes(:roles, :user)
+    @current_team_member = @team_members.detect { |t| t.user == current_user }
     @standup_reports = StandupReport.includes(survey_responses: [ :survey_question ] )
       .where(team_member_id: @team.team_members)
       .order(created_at: :desc)
