@@ -1,5 +1,5 @@
 class StandupReport < ApplicationRecord
-  belongs_to :team_member
+  belongs_to :team_member, touch: true
   has_many :survey_responses
   accepts_nested_attributes_for :survey_responses
 
