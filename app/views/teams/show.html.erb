@@ -23,7 +23,5 @@
 </div>
 <h2>Activity Feed</h2>
 <% @standup_reports.each do |standup_report| %>
-  <% cache standup_report do%>
-    <%= render standup_report %>
-  <% end %>
+  <%= render standup_report %>
 <% end %>
