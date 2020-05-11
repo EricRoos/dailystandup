@@ -4,6 +4,8 @@ run:
 	docker run -p 4000:3000 -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest
 bash:
 	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bash
+prod_console:
+	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bundle exec rails c
 create_db:
 	docker run -e RAILS_MASTER_KEY=${DAILYSTANDUPENCKEY} --rm -ti dailystandup:latest bundle exec rake db:create
 migrate_db:
