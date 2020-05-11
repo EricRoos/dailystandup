@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_025853) do
+ActiveRecord::Schema.define(version: 2020_05_11_042221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "notifiable_type"
+    t.bigint "notifiable_id"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_activities_on_notifiable_type_and_notifiable_id"
+    t.index ["team_id"], name: "index_activities_on_team_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -95,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_025853) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activities", "teams"
   add_foreign_key "standup_reports", "team_members"
   add_foreign_key "survey_questions", "surveys"
   add_foreign_key "survey_responses", "standup_reports"

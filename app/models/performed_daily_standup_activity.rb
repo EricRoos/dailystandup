@@ -1,0 +1,2 @@
+class PerformedDailyStandupActivity < Activity
+end

@@ -2,6 +2,7 @@ class StandupReport < ApplicationRecord
   belongs_to :team_member, touch: true
   has_many :survey_responses
   accepts_nested_attributes_for :survey_responses
+  after_create :create_activity
 
   validate :check_standup_completeness!
 
@@ -11,6 +12,10 @@ class StandupReport < ApplicationRecord
         standup.survey_responses.build({survey_question: survey_question})
       end
     end
+  end
+
+  def create_activity
+    PerformedDailyStandupActivity.create(team: team_member.team, notifiable: self)
   end
 
  
