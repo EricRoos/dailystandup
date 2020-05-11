@@ -12,6 +12,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'devise'
 gem 'rolify'
+gem 'okcomputer'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
