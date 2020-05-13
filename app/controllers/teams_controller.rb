@@ -13,9 +13,15 @@ class TeamsController < ApplicationController
     @team_members = @team.team_members.includes(:roles, :user)
     @current_team_member = @team_members.detect { |t| t.user == current_user }
 
-    @standup_reports = StandupReport.includes(:team_member, survey_responses: [ :survey_question ] )
-      .where(team_member_id: @team.team_members)
-      .order(created_at: :desc)
+    @standup_reports = StandupReport
+        .where(team_member_id: @team.team_members)
+        .order(created_at: :desc)
+
+    if !Rails.cache.exist?(@team)
+      @standup_reports = Rails.cache.fetch(@team) do
+        @standup_reports = @standup_reports.includes(:team_member, survey_responses: [ :survey_question ] )
+      end
+    end
   end
 
   # GET /teams/new

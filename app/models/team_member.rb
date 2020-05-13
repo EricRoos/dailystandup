@@ -1,7 +1,7 @@
 class TeamMember < ApplicationRecord
   rolify
   belongs_to :user
-  belongs_to :team
+  belongs_to :team, touch: true
   has_many :standup_reports
   validates_uniqueness_of :user, { scope: :team }
   after_create :assign_default_role
