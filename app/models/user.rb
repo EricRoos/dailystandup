@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -11,5 +13,9 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def gravatar_url
+    hash = Digest::MD5.hexdigest(self.email)
+    "https://www.gravatar.com/avatar/#{hash}"
+  end
 
 end
