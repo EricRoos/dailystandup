@@ -18,7 +18,7 @@
 </div>
 <h2>Activity Feed:</h2>
 <% cache @team do %>
-  <% @standup_reports = @standup_reports.includes(team_member: [ :user ], survey_responses: [ :survey_question ] ) %>
+  <% @standup_reports = @standup_reports.includes(:likes, team_member: [ :user ], survey_responses: [ :survey_question ] ) %>
   <% @standup_reports.group_by{ |s| s.created_at.to_date.strftime('%A %B %d') }.each do |date, standup_reports| %>
     <h2><%= date %></h2>
     <% standup_reports.each do |standup_report| %>

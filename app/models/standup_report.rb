@@ -1,6 +1,7 @@
 class StandupReport < ApplicationRecord
   belongs_to :team_member, touch: true
   has_many :survey_responses
+  has_many :likes, as: :likeable
   accepts_nested_attributes_for :survey_responses
   after_create :create_activity
 
