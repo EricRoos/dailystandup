@@ -1,4 +1,4 @@
-$(document).on("ajax:complete", ".like-button-wrapper", function handleLikeSuccess(data, status, xhr){
+$(document).on("ajax:success", ".like-button-wrapper", function handleLikeSuccess(data, status, xhr){
   $.get($(this).data('refresh-url'));
 });
 
