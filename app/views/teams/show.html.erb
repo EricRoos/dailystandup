@@ -26,7 +26,7 @@
 				<div class="tab-content overflow-hidden border-l-2 border-indigo-500 leading-normal">
           <% standup_reports.each do |standup_report| %>
             <% cache standup_report do %>
-              <div data-standup-report-id='<%= standup_report.id %>' class='standup-report'>
+              <div data-standup-report-id='<%= standup_report.id %>' class='standup-report p-4 mt-2'>
                 <%= render standup_report %>
               </div>
             <% end %>
