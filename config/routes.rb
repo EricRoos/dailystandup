@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :teams do
     resources :standup_reports
     resources :team_members
+    resources :likes
   end
   devise_for :users
 
