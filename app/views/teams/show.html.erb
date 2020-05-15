@@ -19,13 +19,20 @@
 <h2>Activity Feed:</h2>
 <% cache @team do %>
   <% @standup_reports.group_by{ |s| s.created_at.to_date.strftime('%A %B %d') }.each do |date, standup_reports| %>
-    <h2><%= date %></h2>
-    <% standup_reports.each do |standup_report| %>
-      <% cache standup_report do %>
-        <div data-standup-report-id='<%= standup_report.id %>' class='standup-report'>
-          <%= render standup_report %>
-        </div>
-      <% end %>
-    <% end %>
+	  <div class="">
+		  <div class="tab w-full overflow-hidden border-t">
+			  <input class="absolute opacity-0 " id="tab-multi-one" type="checkbox" name="tabs">
+        <label class="block p-5 leading-normal cursor-pointer" for="tab-multi-one"><%= date %></label>
+				<div class="tab-content overflow-hidden border-l-2 border-indigo-500 leading-normal">
+          <% standup_reports.each do |standup_report| %>
+            <% cache standup_report do %>
+              <div data-standup-report-id='<%= standup_report.id %>' class='standup-report'>
+                <%= render standup_report %>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+      </div>
+	 </div>
   <% end %>
 <% end %>

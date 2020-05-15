@@ -114,3 +114,11 @@ form .field label{
   @apply w-full;
   @apply shadow-xl;
 }
+
+.standup-slideshow {
+  height: 500px;
+}
+
+.standup-slideshow .standup-report{
+  float: left;
+}

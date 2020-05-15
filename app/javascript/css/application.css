@@ -7,3 +7,5 @@
 @import "common.css";
 
 @import "../components/styles.css";
+
+@import "vendor.css";
