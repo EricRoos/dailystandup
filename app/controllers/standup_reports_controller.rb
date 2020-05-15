@@ -1,5 +1,5 @@
 class StandupReportsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy, :create]
+  before_action :set_team
 
 
   # GET /teams/1
@@ -10,7 +10,7 @@ class StandupReportsController < ApplicationController
 
   # GET /teams/new
   def new
-    @standup_report = StandupReport.build_report(TeamMember.last)
+    @standup_report = StandupReport.build_report(TeamMember.where(user_id: current_user.id, team_id: @team.id).first)
   end
 
   # POST /teams
