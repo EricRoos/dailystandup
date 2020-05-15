@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
     Rails.logger.info '-------------------------- ACTION STARTS HERE -----------------------'
     @standup_reports = Rails.cache.fetch([@team, 'team-feed']) do
       StandupReport
+        .includes(team_member: [ :user ], survey_responses: [ :survey_question ] )
         .where(team_member_id: @team.team_members)
         .order(created_at: :desc)
     end
