@@ -12,7 +12,7 @@
   </div>
   <div class="mt-2">
     <div class="py-2 flex flex-row items-center">
-      <%= button_to team_likes_path(standup_report.team_member.team), class: "flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg", params: { like: { likeable_type: standup_report.class.to_s, likeable_id: standup_report.id } } do %>
+      <%= button_to team_likes_path(standup_report.team_member.team), remote: true, form: { 'data-refresh-url': team_standup_report_path(standup_report) }, form_class: 'like-button-wrapper', class: "like-button flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg", params: { like: { likeable_type: standup_report.class.to_s, likeable_id: standup_report.id } } do %>
         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
         <span class="ml-1"><%= standup_report.likes_count %></span>
       <% end %>

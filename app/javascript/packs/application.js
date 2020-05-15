@@ -2,13 +2,18 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
-import '../css/application.css'
-require("@rails/ujs").start()
+import '../css/application.css';
+import $ from 'jquery';
+global.$ = $;
+global.jQuery = $;
+import {} from 'jquery-ujs'
+//require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("deps")
 require("components")
+require("app")
 
 
 

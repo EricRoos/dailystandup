@@ -22,7 +22,9 @@
     <h2><%= date %></h2>
     <% standup_reports.each do |standup_report| %>
       <% cache standup_report do %>
-        <%= render standup_report %>
+        <div data-standup-report-id='<%= standup_report.id %>' class='standup-report'>
+          <%= render standup_report %>
+        </div>
       <% end %>
     <% end %>
   <% end %>

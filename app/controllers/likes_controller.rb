@@ -7,6 +7,7 @@ class LikesController < ApplicationController
       if @like.save
         format.html { redirect_to @team, notice: 'Like was successfully created.' }
         format.json { render :show, status: :created, location: @team }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @team.errors, status: :unprocessable_entity }
