@@ -10,13 +10,10 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    Rails.logger.info '-------------------------- ACTION STARTS HERE -----------------------'
-    @standup_reports = Rails.cache.fetch([@team, 'team-feed']) do
-      StandupReport
-        .includes(team_member: [ :user ], survey_responses: [ :survey_question ] )
-        .where(team_member_id: @team.team_members)
-        .order(created_at: :desc)
-    end
+    @standup_reports = StandupReport
+      .includes(team_member: [ :user ], survey_responses: [ :survey_question ])
+      .where(team_member_id: @team.team_members)
+      .order(created_at: :desc)
   end
 
   # GET /teams/new

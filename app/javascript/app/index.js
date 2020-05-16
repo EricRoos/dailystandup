@@ -3,5 +3,5 @@ $(document).on("ajax:success", ".like-button-wrapper", function handleLikeSucces
 });
 
 $(document).on("ajax:beforeSend", ".like-button-wrapper", function handleLikeSuccess(data, status, xhr){
-  $(this).html("Liking...");
+  $(this).html("Saving...")
 });
