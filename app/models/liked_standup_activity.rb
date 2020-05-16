@@ -1,0 +1,2 @@
+class LikedStandupActivity < Activity
+end
