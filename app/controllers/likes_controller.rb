@@ -15,6 +15,18 @@ class LikesController < ApplicationController
     end
   end
 
+  def destroy
+    current_team_member.likes.find(params[:id]).destroy
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def current_team_member
+    @current_team_member ||= TeamMember.where(team_id: @team.id, user_id: current_user.id).first
+  end
+  helper_method :current_team_member
+
   private
 
   def like_params
@@ -25,8 +37,5 @@ class LikesController < ApplicationController
     @team = Team.find(params[:team_id])
   end
 
-  def current_team_member
-    @current_team_member ||= TeamMember.where(team_id: @team.id, user_id: current_user.id).first
-  end
 
 end

@@ -29,6 +29,10 @@ class StandupReportsController < ApplicationController
     end
   end
 
+  def current_team_member
+    @current_team_member ||= TeamMember.where(team_id: @team.id, user_id: current_user.id).first
+  end
+  helper_method :current_team_member
 
   private
     # Use callbacks to share common setup or constraints between actions.

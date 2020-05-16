@@ -3,6 +3,7 @@ class TeamMember < ApplicationRecord
   belongs_to :user
   belongs_to :team, touch: true
   has_many :standup_reports
+  has_many :likes
   validates_uniqueness_of :user, { scope: :team }
   after_create :assign_default_role
 
