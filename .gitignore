@@ -32,6 +32,8 @@ yarn-debug.log*
 
 /config/credentials/production.key
 
+*.swp
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
