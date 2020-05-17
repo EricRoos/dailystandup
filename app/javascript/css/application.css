@@ -5,7 +5,6 @@
 @import "tailwindcss/utilities";
 
 @import "common.css";
-
-@import "../components/styles.css";
+@import "timeline.css";
 
 @import "vendor.css";

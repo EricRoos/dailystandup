@@ -2,6 +2,10 @@ body.devise {
  @apply bg-gray-900;
 }
 
+body, * {
+  box-sizing: border-box;
+}
+
 h1{
  font-size: 3rem;
  font-weight: bold;
@@ -92,13 +96,13 @@ form .field label{
   @apply row-span-2;
   @apply col-span-1;
   @apply flex;
-  align-items: end;
+  align-items: flex-end;
 }
 #front-page-banner-lg div.right {
   @apply row-span-2;
   @apply col-span-1;
   @apply flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   font-size: 24px;
 }
@@ -113,12 +117,4 @@ form .field label{
 #start-now {
   @apply w-full;
   @apply shadow-xl;
-}
-
-.standup-slideshow {
-  height: 500px;
-}
-
-.standup-slideshow .standup-report{
-  float: left;
 }

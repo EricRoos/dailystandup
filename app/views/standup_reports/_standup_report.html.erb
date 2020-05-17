@@ -1,28 +1,15 @@
-<div class="mx-auto px-4 py-4 bg-white shadow-md rounded-lg mb-4">
-  <div class="py-2 flex flex-row items-center justify-between">
-    <div class="flex flex-row items-center">
-      <a href="#" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
-        <img class="rounded-full h-16 w-16 object-cover" src="<%= standup_report.team_member.gravatar_url %>" alt="">
-      <h4 class="ml-2"><%= standup_report.team_member.full_name %></h4>
-      </a>
-    </div>
-    <div class="flex flex-row items-center">
-      <p class="text-xs font-semibold text-gray-500"><%= time_ago_in_words(standup_report.created_at) %></p>
-    </div>
-  </div>
-  <div class="mt-2">
-    <div class="py-2 flex flex-row items-center">
-      <% cache [current_team_member, standup_report, 'likes'] do %>
-        <% current_like = standup_report.likes.detect{ |l| l.team_member == current_team_member } %>
-        <% has_been_liked = current_like.present? %>
-        <% like_button_path = has_been_liked ? team_like_path(standup_report.team_member.team, current_like) : team_likes_path(standup_report.team_member.team) %>
-        <% like_button_method = has_been_liked ? 'delete' : 'post' %>
-        <%= button_to like_button_path, method: like_button_method, remote: true, form: { 'data-refresh-url': team_standup_report_path(standup_report.team_member.team, standup_report) }, form_class: 'like-button-wrapper', class: "like-button flex shadow border p-2 flex-row items-center focus:outline-none focus:shadow-outline rounded-lg", params: { like: { likeable_type: standup_report.class.to_s, likeable_id: standup_report.id } } do %>
-          <svg fill='<%= has_been_liked ? 'currentColor' : 'none' %>' stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-          <span class="ml-1"><%= standup_report.likes_count %></span>
-        <% end %>
+<div class="mx-auto px-4 py-4 bg-white shadow-md rounded-lg mb-4 text-black">
+  <div class="py-2 flex flex-row items-center">
+    <% cache [current_team_member, standup_report, 'likes'] do %>
+      <% current_like = standup_report.likes.detect{ |l| l.team_member == current_team_member } %>
+      <% has_been_liked = current_like.present? %>
+      <% like_button_path = has_been_liked ? team_like_path(standup_report.team_member.team, current_like) : team_likes_path(standup_report.team_member.team) %>
+      <% like_button_method = has_been_liked ? 'delete' : 'post' %>
+      <%= button_to like_button_path, method: like_button_method, remote: true, form: { 'data-refresh-url': team_standup_report_path(standup_report.team_member.team, standup_report) }, form_class: 'like-button-wrapper', class: "like-button flex shadow border p-2 flex-row items-center focus:outline-none focus:shadow-outline rounded-lg", params: { like: { likeable_type: standup_report.class.to_s, likeable_id: standup_report.id } } do %>
+        <svg fill='<%= has_been_liked ? 'currentColor' : 'none' %>' stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <span class="ml-1"><%= standup_report.likes_count %></span>
       <% end %>
-    </div>
+    <% end %>
   </div>
   <div class="py-2">
     <% standup_report.survey_responses.each do |survey_response| %>

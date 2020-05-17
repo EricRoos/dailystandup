@@ -14,6 +14,10 @@ class TeamsController < ApplicationController
       .includes(team_member: [ :user ], survey_responses: [ :survey_question ])
       .where(team_member_id: @team.team_members)
       .order(created_at: :desc)
+
+    @activities = @team.activities
+      .includes(:actor)
+      .order(created_at: :desc)
   end
 
   # GET /teams/new
@@ -30,10 +34,10 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.build_survey.populate_questions
-    @team.save
     new_team_member = TeamMember.new(user: current_user)
     @team.team_members << new_team_member
     new_team_member.add_role(:owner)
+    @team.save
     respond_to do |format|
       if @team.persisted?
         format.html { redirect_to @team, notice: 'Team was successfully created.' }

@@ -1,6 +1,6 @@
 class Survey < ApplicationRecord
   belongs_to :team
-  has_many :survey_questions
+  has_many :survey_questions, dependent: :destroy
 
   DEFAULT_QUESTIONS = [
     'What did you do yesterday',

@@ -4,6 +4,8 @@ class Like < ApplicationRecord
   after_create :create_activity
 
   def create_activity
-    LikedStandupActivity.create(team: team_member.team, notifiable: self)
+    if likeable.is_a?(StandupReport)
+      Activities::LikedStandup.create(team: team_member.team, notifiable: self, actor: team_member)
+    end
   end
 end

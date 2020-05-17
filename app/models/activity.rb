@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   belongs_to :team
   belongs_to :notifiable, polymorphic: true
+  belongs_to :actor, polymorphic: true
 
   after_create_commit :queue_post_process_job
 

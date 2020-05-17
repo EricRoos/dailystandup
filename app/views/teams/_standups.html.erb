@@ -1,0 +1,19 @@
+<% cache @team do %>
+  <% @standup_reports.group_by{ |s| s.created_at.to_date.strftime('%A %B %d') }.each do |date, standup_reports| %>
+	  <div class="">
+		  <div class="tab w-full overflow-hidden border-t">
+        <input class="absolute opacity-0 " id="tab-multi-<%=date.to_s.gsub(' ','')%>" type="checkbox" name="tabs">
+        <label class="block p-5 leading-normal cursor-pointer" for="tab-multi-<%= date.to_s.gsub(' ','')%>"><%= date %></label>
+				<div class="tab-content overflow-hidden border-l-2 border-indigo-500 leading-normal" style="overflow-y:scroll;">
+          <% standup_reports.each do |standup_report| %>
+            <% cache standup_report do %>
+              <div data-standup-report-id='<%= standup_report.id %>' class='standup-report p-4 mt-2'>
+                <%= render standup_report %>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+      </div>
+	 </div>
+  <% end %>
+<% end %>

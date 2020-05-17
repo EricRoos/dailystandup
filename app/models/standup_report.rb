@@ -16,7 +16,7 @@ class StandupReport < ApplicationRecord
   end
 
   def create_activity
-    PerformedDailyStandupActivity.create(team: team_member.team, notifiable: self)
+    Activities::StandupPosted.create(team: team_member.team, notifiable: self, actor: team_member)
   end
 
  

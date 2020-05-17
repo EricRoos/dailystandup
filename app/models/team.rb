@@ -1,6 +1,17 @@
 class Team < ApplicationRecord
-  has_many :team_members
-  has_one :survey
-  has_many :activities
+  has_many :team_members, dependent: :destroy
+  has_one :survey, dependent: :destroy
+  has_many :activities, dependent: :destroy
+
+  after_create :post_event
+
+  def creator
+    team_members.detect { |t| t.has_role?(:owner) }
+  end
+  private
+
+  def post_event
+    Activities::TeamCreated.create(notifiable: self, actor: creator, team: self)
+  end
 
 end
