@@ -9,7 +9,7 @@ function onInstall(event) {
       return cache.addAll([
         '/offline.html'
       ]);
-    }).catch( (err) => {
+    }).catch(function handleErr(err){
       console.log(err);
       console.log('error');
     });
@@ -55,6 +55,7 @@ function onFetch(event) {
     })
   );
 }
+
 $(document).ready( () => {
   console.log('adding workers');
   self.addEventListener('install', onInstall);
