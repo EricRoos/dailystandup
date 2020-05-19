@@ -6,7 +6,6 @@ function onInstall(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
       return cache.addAll([
-        '<%= asset_pack_path 'application.js' %>',
         '/offline.html'
       ]);
     })
