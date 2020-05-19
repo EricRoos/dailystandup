@@ -5,7 +5,7 @@ end
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_controller.asset_host = "//dailystandup-app-cdn.s3.amazonaws.com"
+  config.action_controller.asset_host = "https://d3s9qhpkgt5794.cloudfront.net"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
