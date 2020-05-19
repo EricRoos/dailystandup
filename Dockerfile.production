@@ -26,6 +26,7 @@ RUN yarn install
 
 COPY . /app
 RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:precompile
+RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rake assets:sync
 RUN rm -rf node_modules/
 
 EXPOSE 3000
