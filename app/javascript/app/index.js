@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
         console.log('[Companion]', 'Service worker registered!');
         console.log(reg);
       }).catch(function(err){
-        console.log('failed to register');
+        console.error('failed to register: %o', err);
       });
   }
 });
