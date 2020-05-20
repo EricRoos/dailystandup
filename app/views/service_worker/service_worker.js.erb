@@ -54,13 +54,10 @@ try{
       })
     );
   }
-
-  $(document).ready( () => {
-    console.log('adding workers');
-    self.addEventListener('install', onInstall);
-    self.addEventListener('activate', onActivate);
-    self.addEventListener('fetch', onFetch);
-  });
+  console.log('adding workers');
+  self.addEventListener('install', onInstall);
+  self.addEventListener('activate', onActivate);
+  self.addEventListener('fetch', onFetch);
 } catch (err) {
   console.error(err);
 }
