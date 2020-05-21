@@ -1,6 +1,4 @@
-<%= render layout: 'activities/shared/common', locals: { activity: standup_posted } do %>
-  <h5>Posted New Standup</h5>
-  <hr class='py-2 mt-2'/>
+<%= render layout: 'activities/shared/common', locals: { title: 'New Standup', activity: standup_posted } do %>
   <div data-standup-report-id="<%= standup_posted.notifiable_id %>">
     <%= link_to 'View Now', team_standup_report_path(team_id: standup_posted.team.id, id: standup_posted.notifiable_id), remote: true %>
   </div>
