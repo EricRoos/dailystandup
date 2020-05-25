@@ -8,6 +8,7 @@ jobs:
       - image: circleci/ruby:2.7
     executor: ruby/default
     steps:
+      - setup_remote_docker
       - checkout
       - run:
           name: Build it
