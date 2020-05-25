@@ -11,4 +11,4 @@ jobs:
       - checkout
       - run:
           name: Build it
-          command: make build
+          command: apk add --update make && make build
