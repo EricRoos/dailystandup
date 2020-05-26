@@ -11,5 +11,8 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
+          name: test the enc
+          command: cat config/credentials/production.yml.enc
+      - run:
           name: Build it
           command: make build
