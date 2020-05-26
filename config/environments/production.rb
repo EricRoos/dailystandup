@@ -1,4 +1,5 @@
 #sentry.io
+puts "#{ENV['RAILS_MASTER_KEY']}".size
 Raven.configure do |config|
   config.dsn = Rails.application.credentials.config[:raven][:dsn]
 end

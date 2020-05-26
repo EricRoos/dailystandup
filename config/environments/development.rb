@@ -1,3 +1,4 @@
+puts "#{ENV['RAILS_MASTER_KEY']}".size
 Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
