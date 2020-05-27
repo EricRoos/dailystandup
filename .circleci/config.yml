@@ -18,5 +18,8 @@ jobs:
           name: test the enc
           command: cat config/credentials/production.yml.enc
       - run:
-          name: Build it
-          command: make build
+          name: Config EBS
+          command: eb use dailystandup-prod-vpc --profile default
+      - run:
+          name: Buildit and Shippit
+          command: make deploy_pipeline
