@@ -1,9 +1,9 @@
 version: 2.1
 jobs:
+  dependencies:
+    pre:
+      - pip install awsebcli
   build:
-    dependencies:
-      pre:
-        - pip install awsebcli
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:
