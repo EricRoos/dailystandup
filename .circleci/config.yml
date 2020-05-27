@@ -8,7 +8,9 @@ jobs:
       - checkout
       - run:
           name: Config EBS
-          command: eb use dailystandup-prod-vpc --profile default
+          command: |
+            pip install --upgrade awsebcli
+            eb use dailystandup-prod-vpc --profile default
       - run:
           name: Buildit and Shippit
           command: make deploy_pipeline
