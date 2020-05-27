@@ -3,8 +3,8 @@ orbs:
   ruby: circleci/ruby@0.1.2 
 
 dependencies:
-	pre:
-		- pip install awsebcli
+  pre:
+    - pip install awsebcli
 
 jobs:
   build:
