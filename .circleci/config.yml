@@ -10,6 +10,7 @@ jobs:
           name: Config EBS
           command: |
             sudo pip install --upgrade awsebcli
+            eb list --region us-east-1
             eb use dailystandup-prod-vpc --region us-east-1
       - run:
           name: Buildit and Shippit
