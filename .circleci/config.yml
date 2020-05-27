@@ -14,7 +14,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip instal awsebcli
+            pip install awsebcli
       - run:
           name: Config EBS
           command: eb use dailystandup-prod-vpc --profile default
