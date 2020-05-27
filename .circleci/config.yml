@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Config EBS
           command: |
-            pip install --upgrade awsebcli
+            sudo pip install --upgrade awsebcli
             eb use dailystandup-prod-vpc --profile default
       - run:
           name: Buildit and Shippit
