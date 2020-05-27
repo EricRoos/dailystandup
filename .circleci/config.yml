@@ -1,11 +1,8 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7
-    executor: ruby/default
+      - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - setup_remote_docker
       - checkout
