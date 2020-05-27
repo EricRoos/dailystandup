@@ -4,7 +4,6 @@ orbs:
 
 dependencies:
   pre:
-    - pip install awsebcli
 
 jobs:
   build:
@@ -17,6 +16,9 @@ jobs:
       - run:
           name: test the enc
           command: cat config/credentials/production.yml.enc
+      - run:
+          name: install ebcli
+          command: pip install awsebcli
       - run:
           name: Config EBS
           command: eb use dailystandup-prod-vpc --profile default
