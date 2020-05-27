@@ -11,7 +11,10 @@ jobs:
           command: cat config/credentials/production.yml.enc
       - run:
           name: install ebcli
-          command: pip install awsebcli
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip instal awsebcli
       - run:
           name: Config EBS
           command: eb use dailystandup-prod-vpc --profile default
