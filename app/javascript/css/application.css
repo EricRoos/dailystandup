@@ -8,3 +8,8 @@
 @import "timeline.css";
 
 @import "vendor.css";
+
+@font-face{
+  font-family: 'BebasNeue';
+  src: url('../../assets/fonts/BebasNeue-Regular.ttf');
+}
