@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Config EBS
           command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
             sudo pip install --upgrade awsebcli
             eb init dailystandup --region us-east-1 -p 'Docker 18.09.9-ce'
       - run:
