@@ -10,9 +10,7 @@ jobs:
           name: Config EBS
           command: |
             sudo pip install --upgrade awsebcli
-            eb init
-            eb list --region us-east-1
-            eb use dailystandup-prod-vpc --region us-east-1
+            eb init dailystandup --region us-east-1 -p 'Docker 18.09.9-ce'
       - run:
           name: Buildit and Shippit
           command: make deploy_pipeline

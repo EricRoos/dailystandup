@@ -1,0 +1,2 @@
+FROM ericroos13/dailystandup
+EXPOSE 3000
