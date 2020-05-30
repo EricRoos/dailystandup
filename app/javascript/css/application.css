@@ -13,3 +13,7 @@
   font-family: 'BebasNeue';
   src: url('../../assets/fonts/BebasNeue-Regular.ttf');
 }
+@font-face{
+  font-family: 'Raleway';
+  src: url('../../assets/fonts/Raleway-Regular.ttf');
+}
