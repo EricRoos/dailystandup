@@ -1,0 +1,29 @@
+<% can_manage_team = can_manage_team?(@team, current_user) %>
+<div class='bg-gray-300 py-2 px-2 rounded shadow'>
+  <div class='w-full'>
+    <h1>
+      <%= @team.name %>
+    </h1>
+  </div>
+  <div class=''>
+    <% if true || @current_team_member.can_perform_standup? %>
+      <%= link_to new_team_standup_report_path(@team), class:"bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center" do %>
+        <span class="">Perform Standup</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class='py-2'>
+  <hr />
+</div>
+
+<h2>Activity Feed:</h2>
+<div class="timeline">
+  <% @activities.each do |activity| %>
+    <div class="tl-container">
+      <div class="content">
+        <%= render activity %>  
+      </div>
+    </div>
+  <% end %>
+</div> 
