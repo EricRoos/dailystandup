@@ -13,7 +13,7 @@
     </div>
     <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
 
-      <% links = [ { title: 'Activity Feed', url: team_path(@team), active?: true}, { title: 'Manage Team', url: edit_team_path(@team), active?: false } ] %>
+      <% links = [ {title: 'Team Members', url: team_path(@team, { tab: 'team_members' })}, { title: 'Activity Feed', url: team_path(@team), active?: true}, { title: 'Manage Team', url: edit_team_path(@team), active?: false } ] %>
       <% links.each do |link| %>
         <%= link_to link[:title], link[:url], class: "block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline #{ link[:active?] ? 'bg-gray-200' : '' }" %>
       <% end %>
@@ -21,13 +21,9 @@
   </div>
   <div id='team-detail-section' class='w-full bg-gray-200 px-2 py-2 rounded shadow'>
     <h2>Activity Feed:</h2>
-    <div class="timeline">
+    <div class="team-activities">
       <% @activities.each do |activity| %>
-        <div class="tl-container">
-          <div class="content">
-            <%= render activity %>  
-          </div>
-        </div>
+        <%= render activity %>  
       <% end %>
     </div> 
   </div>

@@ -8,4 +8,8 @@ class Activity < ApplicationRecord
   def queue_post_process_job
     PostActivityProcessJob.perform_later(self.id)
   end
+
+  def description
+    self.class.to_s
+  end
 end

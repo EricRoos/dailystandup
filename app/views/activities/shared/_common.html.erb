@@ -1,10 +1,4 @@
 <% user = activity.actor %>
-<h5 class='title px-2'><%= title %></h5>
-<div class='message'>
-  <div class='px-2'>
-    <%= yield %>
-  </div>
-</div>
-<div class='footer'>
-  <span class='px-2'><%= activity.actor.full_name %></span>
+<div class='py-2'>
+  <span>At <%= user.created_at %>, <em><%= user.full_name %></em> <u><%= link_to activity.description, '#', remote: true %></u></span>
 </div>
