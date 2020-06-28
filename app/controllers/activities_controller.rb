@@ -5,6 +5,8 @@ class ActivitiesController < ApplicationController
   # GET /team_members.json
   def index
     @activities = @team.activities
+      .includes(:actor)
+      .order(created_at: :desc)
   end
 
   private
