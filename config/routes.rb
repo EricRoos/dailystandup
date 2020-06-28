@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'service_worker/manifest'
   resources :surveys
   resources :teams do
+    resources :activities
     resources :standup_reports
     resources :team_members
     resources :likes

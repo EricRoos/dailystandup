@@ -15,6 +15,8 @@ gem 'devise'
 gem 'rolify'
 gem 'okcomputer'
 gem 'sidekiq'
+gem 'cells-rails'
+gem 'cells-erb'
 
 
 # Use SCSS for stylesheets
