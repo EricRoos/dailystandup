@@ -3,5 +3,6 @@
     <%= cell(:team, @team).(:sidebar, 'activity-feed') %>
   </div>
   <div id='team-detail-section' class='w-full bg-white px-2 py-2 rounded shadow'>
+    <%= render partial: 'activities/index', locals: { activities: @team.activities } %>
   </div>
 </div>

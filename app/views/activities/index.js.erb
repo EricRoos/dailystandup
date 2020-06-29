@@ -1,2 +1,2 @@
 $("#team-sidebar").html("<%=j cell(:team, @team).(:sidebar, 'activity-feed') %>")
-$("#team-detail-section").html("<%=j render(@activities) %>")
+$("#team-detail-section").html("<%=j render(partial: 'index', locals: { activities: @activities }) %>")

@@ -1,4 +1,5 @@
 <div class="mx-auto px-4 py-4 bg-white rounded-lg mb-4 text-black">
+  <%= link_to 'Back', team_activities_path(standup_report.team_member.team), remote: true %>
   <div class="py-2 flex flex-row items-center">
     <% cache [current_team_member, standup_report, 'likes'] do %>
       <% current_like = standup_report.likes.detect{ |l| l.team_member == current_team_member } %>

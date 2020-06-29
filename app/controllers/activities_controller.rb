@@ -4,12 +4,21 @@ class ActivitiesController < ApplicationController
   # GET /team_members
   # GET /team_members.json
   def index
-    @activities = @team.activities
-      .includes(:actor)
-      .order(created_at: :desc)
+    @activities = fetch_activities
+  end
+
+  def show
+    @activity = fetch_activities.where(id: params[:id]).first
   end
 
   private
+
+    def fetch_activities
+      @team.activities
+        .includes(:actor)
+        .order(created_at: :desc)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:team_id])

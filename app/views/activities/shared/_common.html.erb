@@ -1,4 +1,4 @@
 <% user = activity.actor %>
 <div class='py-2'>
-  <span>At <%= user.created_at %>, <em><%= user.full_name %></em> <u><%= link_to activity.description, '#', remote: true %></u></span>
+  <span>At <%= user.created_at %>, <em><%= user.full_name %></em> <u><%= link_to activity.description, team_activity_path(activity.team, activity), remote: true %></u></span>
 </div>

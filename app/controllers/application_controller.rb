@@ -26,4 +26,11 @@ class ApplicationController < ActionController::Base
       "application"
     end
   end
+
+
+  def current_team_member
+    return unless @team.present?
+    @current_team_member ||= TeamMember.where(team_id: @team.id, user_id: current_user.id).first
+  end
+  helper_method :current_team_member
 end

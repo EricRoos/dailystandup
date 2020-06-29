@@ -25,7 +25,6 @@ class TeamsController < ApplicationController
     @team = Team.new
   end
 
-  # GET /teams/1/edit
   def edit
   end
 

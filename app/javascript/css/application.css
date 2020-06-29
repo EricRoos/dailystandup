@@ -9,6 +9,7 @@
 
 @import "vendor.css";
 
+
 @font-face{
   font-family: 'BebasNeue';
   src: url('../../assets/fonts/BebasNeue-Regular.ttf');
@@ -17,3 +18,4 @@
   font-family: 'Raleway';
   src: url('../../assets/fonts/Raleway-Regular.ttf');
 }
+
