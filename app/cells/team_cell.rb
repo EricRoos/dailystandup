@@ -3,10 +3,10 @@ class TeamCell < Cell::ViewModel
 
   def sidebar(active_tab='team-members')
     links = [
-      { title: 'Post Standup',   'tab_name': 'manage-team',    url: new_team_standup_report_path(team) },
-      { title: 'Team Members',  'tab_name': 'team-members',   url: team_team_members_path(team) },
-      { title: 'Activity Feed', 'tab_name': 'activity-feed',  url: team_activities_path(team) },
-      { title: 'Manage Team',   'tab_name': 'manage-team',    url: edit_team_path(team) },
+      { title: 'Post Standup',   'tab_name': 'manage-team',    url: new_team_standup_report_path(team), icon: 'plus' },
+      { title: 'Team Members',  'tab_name': 'team-members',   url: team_team_members_path(team), icon: 'user' },
+      { title: 'Activity Feed', 'tab_name': 'activity-feed',  url: team_activities_path(team), icon: 'list' },
+      { title: 'Manage Team',   'tab_name': 'manage-team',    url: edit_team_path(team), icon: 'cog' },
     ]
     render locals: { team: model, links: links, active_tab: active_tab }
   end

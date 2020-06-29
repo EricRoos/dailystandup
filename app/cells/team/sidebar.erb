@@ -11,11 +11,15 @@
     </button>
   </div>
   <hr/>
-  <i class='fa fa-user'></i>
   <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
 
     <% links.each do |link| %>
-      <%= link_to link[:title], link[:url], class: "block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline #{ link[:tab_name] == active_tab ? 'bg-gray-200' : '' }", remote: true %>
+      <span>
+        <%= link_to link[:url], class: "block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline #{ link[:tab_name] == active_tab ? 'bg-gray-200' : '' }", remote: true do %>
+          <i class="fa fa-lg fa-<%=link[:icon]%>"></i>
+          <%= link[:title] %>
+        <% end %>
+      </span>
     <% end %>
   </nav>
 </div>
