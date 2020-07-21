@@ -17,6 +17,7 @@ gem 'okcomputer'
 gem 'sidekiq'
 gem 'cells-rails'
 gem 'cells-erb'
+gem 'dotenv-rails'
 
 
 # Use SCSS for stylesheets

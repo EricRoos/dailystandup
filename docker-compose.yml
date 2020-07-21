@@ -1,22 +1,6 @@
 version: '2'
 
 services:
-  auth:
-    image: jboss/keycloak
-    ports: 
-      - 5000:8080
-    environment:
-      DB_VENDOR: postgres
-      DB_ADDR: db:5432
-      DB_DATABASE: dailystandup_development
-      DB_USER: postgres
-      DB_PASSWORD: mysecretpassword
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: foobar
-    depends_on:
-      - db
-
-
   redis:
     image: redis:latest
     ports:
