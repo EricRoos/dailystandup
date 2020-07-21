@@ -15,3 +15,7 @@ When('the user completes the Login form') do
   fill_in "Password", with: @user.password
 end
 
+When('the user completes the New Team form') do
+  @team = FactoryBot.build(:team)
+  fill_in "Name", with: @team.name
+end
