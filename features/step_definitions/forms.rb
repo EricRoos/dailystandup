@@ -5,7 +5,12 @@ Then('the user sees the {string} form') do |form_name|
 	end
 end
 
-When('the user completes the Login Form') do
+Then('the user should see the New Team form') do
+  expect(page).to have_selector("form#new_team")
+end
+
+
+When('the user completes the Login form') do
   fill_in "Email", with: @user.email
   fill_in "Password", with: @user.password
 end
