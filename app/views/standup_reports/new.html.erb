@@ -1,11 +1,13 @@
-Report Standup
-<%= form_for [@standup_report.team_member.team, @standup_report ] do |f| %>
+<%= render layout: 'layouts/team', locals: { side_bar_option: 'post-standup' } do %>
+  Report Standup
+  <%= form_for [@standup_report.team_member.team, @standup_report ] do |f| %>
 
-  <%= f.fields_for :survey_responses, @standup_report.survey_responses do |survey_response_fields|%>
-    <%= survey_response_fields.label :answer, survey_response_fields.object.survey_question.text %>
-    <%= survey_response_fields.hidden_field :survey_question_id %>
-    <%= survey_response_fields.text_field :answer %>
+    <%= f.fields_for :survey_responses, @standup_report.survey_responses do |survey_response_fields|%>
+      <%= survey_response_fields.label :answer, survey_response_fields.object.survey_question.text %>
+      <%= survey_response_fields.hidden_field :survey_question_id %>
+      <%= survey_response_fields.text_field :answer %>
+    <% end %>
+
+    <%= f.submit %>
   <% end %>
-
-  <%= f.submit %>
 <% end %>

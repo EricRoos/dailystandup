@@ -15,7 +15,7 @@
 
     <% links.each do |link| %>
       <span>
-        <%= link_to link[:url], class: "block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline #{ link[:tab_name] == active_tab ? 'bg-gray-200' : '' }", remote: true do %>
+        <%= link_to link[:url], class: "block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline #{ link[:tab_name] == active_tab ? 'bg-gray-200' : '' }" do %>
           <i class="fa fa-lg fa-<%=link[:icon]%>"></i>
           <%= link[:title] %>
         <% end %>

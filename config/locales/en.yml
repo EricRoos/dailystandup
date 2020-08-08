@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      survey_question:
+        text: Question
+  helpers:
+    submit:
+      team:
+        update: 'Save'

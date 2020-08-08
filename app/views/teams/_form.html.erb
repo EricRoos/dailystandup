@@ -15,6 +15,13 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  <h5>Standup Questions</h5>
+  <%= form.fields_for :survey do |survey_fields| %>
+    <%= survey_fields.fields_for :survey_questions do |survey_question_fields| %>
+      <%= survey_question_fields.label :text %>
+      <%= survey_question_fields.text_field :text %>
+    <% end %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

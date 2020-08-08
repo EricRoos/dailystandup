@@ -1,6 +1,7 @@
 class Survey < ApplicationRecord
   belongs_to :team
-  has_many :survey_questions, dependent: :destroy
+  has_many :survey_questions
+  accepts_nested_attributes_for :survey_questions
 
   DEFAULT_QUESTIONS = [
     'What did you do yesterday',

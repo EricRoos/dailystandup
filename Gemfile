@@ -45,9 +45,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'parallel_tests'
 end
 
 group :development do
+  gem 'i18n-debug'
   gem 'timecop'
   gem 'bullet'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   has_many :team_members, dependent: :destroy
   has_one :survey, dependent: :destroy
+  accepts_nested_attributes_for :survey, update_only: true
   has_many :activities, dependent: :destroy
 
   after_create :post_event

@@ -11,3 +11,4 @@ Feature: Team Management
     When the user completes the New Team form
     And the user presses "Create Team"
     Then the user should see the teams name
+
