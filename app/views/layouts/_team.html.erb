@@ -3,6 +3,8 @@
     <%= cell(:team, @team).(:sidebar, side_bar_option) %>
   </div>
   <div id='team-detail-section' class='w-full bg-white px-2 py-2 rounded shadow'>
+    <h1><%= title %></h1>
+    <hr/>
     <%= yield %>
   </div>
 </div>

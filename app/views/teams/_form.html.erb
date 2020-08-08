@@ -11,16 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <h5>Standup Questions</h5>
+  <fieldset>
+    <legend><h2>Team Info</h2></legend>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+  </fieldset>
+
+
   <%= form.fields_for :survey do |survey_fields| %>
-    <%= survey_fields.fields_for :survey_questions do |survey_question_fields| %>
-      <%= survey_question_fields.label :text %>
-      <%= survey_question_fields.text_field :text %>
-    <% end %>
+    <fieldset>
+      <legend><h2>Standup Questions</h2></legend>
+      <%= survey_fields.fields_for :survey_questions do |survey_question_fields| %>
+        <div class="field">
+          <%= survey_question_fields.label :text %>
+          <%= survey_question_fields.text_field :text %>
+        </div>
+      <% end %>
+    </fieldset>
   <% end %>
 
   <div class="actions">
