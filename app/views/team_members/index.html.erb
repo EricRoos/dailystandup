@@ -1,22 +1,29 @@
 <%= render layout: 'layouts/team', locals: { side_bar_option: 'team-members', title: 'Team Members' } do %>
-  <table>
-    <thead>
-      <tr>
-        <th>User</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @team.team_members.each do |team_member| %>
-        <tr>
-          <td><%= team_member.user.full_name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Team Member', new_team_team_member_path(@team) %>
+<div class="py-8">
+  <%= render partial: 'layouts/shared/app_button', locals: { text: 'Add Team Member', path: new_team_team_member_path(@team) } %>
+  <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+    <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+      <table class="min-w-full leading-normal">
+        <thead>
+          <tr>
+            <th
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              Name 
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @team.team_members.each do |team_member| %>
+            <tr>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  <%= team_member.user.full_name %>
+                </p>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% end %>
