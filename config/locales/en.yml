@@ -30,7 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      default: "%H:%M %P %a, %b %d"
+      long: "%B %d, %Y %H:%M"
   activerecord:
     attributes:
       survey_question:

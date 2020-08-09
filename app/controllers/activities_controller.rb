@@ -16,6 +16,7 @@ class ActivitiesController < ApplicationController
     def fetch_activities
       @team.activities
         .includes(:actor)
+        .where("created_at > ?", Date.today - 14.days)
         .order(created_at: :desc)
     end
 

@@ -14,10 +14,7 @@ class TeamsController < ApplicationController
     #  .includes(team_member: [ :user ], survey_responses: [ :survey_question ])
     #  .where(team_member_id: @team.team_members)
     #  .order(created_at: :desc)
-
-    @activities = @team.activities
-      .includes(:actor)
-      .order(created_at: :desc)
+    redirect_to team_activities_path(@team)
   end
 
   # GET /teams/new

@@ -1,3 +1,6 @@
 <%= render layout: 'layouts/team', locals: { side_bar_option: 'activity-feed', title: 'Activity Feed' } do %>
-  <%= render @activities %>
+  <% @activities.group_by { |a| a.created_at.to_date }.each do |date, activities| %>
+    <h2><%= date %></h2>
+    <%= render activities %>
+  <% end %>
 <% end %>
