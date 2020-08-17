@@ -12,6 +12,7 @@ module Dailystandup
     config.load_defaults 6.0
     config.log_tags = [ :uuid ]
     config.active_job.queue_adapter = :sidekiq
+    config.load_defaults "6.0" # enables zeitwerk mode in CRuby
 
 
     # Settings in config/environments/* take precedence over those specified here.
