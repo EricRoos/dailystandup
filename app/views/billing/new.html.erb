@@ -1,0 +1,39 @@
+<input id="cardholder-name" type="text">
+<!-- placeholder for Elements -->
+<form id="setup-form" data-secret="<%= @intent.client_secret %>">
+  <div id="card-element"></div>
+  <button id="card-button" data-secret="<%= @intent.client_secret %>">
+    Save Card
+  </button>
+</form>
+<script>
+  var elements = stripe.elements();
+  var cardElement = elements.create('card');
+  cardElement.mount('#card-element');
+  var cardholderName = document.getElementById('cardholder-name');
+  var cardButton = document.getElementById('card-button');
+  var clientSecret = cardButton.dataset.secret;
+  cardButton.addEventListener('click', function(ev) {
+  console.log('here');
+    ev.preventDefault();
+    stripe.confirmCardSetup(
+      clientSecret,
+      {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: cardholderName.value,
+          },
+        },
+      }
+    ).then(function(result) {
+      if (result.error) {
+        // Display error.message in your UI.
+        console.error(result.error)
+      } else {
+        console.log('added a card');
+        alert('card added')
+      }
+    });
+  });
+</script>

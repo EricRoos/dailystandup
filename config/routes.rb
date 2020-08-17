@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :likes
   end
   devise_for :users
+  resources :billing, only: [:index, :new]
   root 'teams#index'
   get '/service-worker.js' => "service_worker#service_worker"
   get '/manifest.json' => "service_worker#manifest"

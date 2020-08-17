@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_194907) do
+ActiveRecord::Schema.define(version: 2020_08_17_011501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2020_05_16_194907) do
     t.bigint "team_member_id", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
     t.index ["team_member_id"], name: "index_likes_on_team_member_id"
+  end
+
+  create_table "payment_profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider"
+    t.string "profile_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_payment_profiles_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -122,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_194907) do
 
   add_foreign_key "activities", "teams"
   add_foreign_key "likes", "team_members"
+  add_foreign_key "payment_profiles", "users"
   add_foreign_key "standup_reports", "team_members"
   add_foreign_key "survey_questions", "surveys"
   add_foreign_key "survey_responses", "standup_reports"

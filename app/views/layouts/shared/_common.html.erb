@@ -8,6 +8,7 @@
 
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://use.fontawesome.com/2cf58c5721.js"></script>
 
@@ -18,7 +19,10 @@
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-		<meta name="HandheldFriendly" content="true"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <script>
+      var stripe = Stripe('<%= Rails.application.credentials.config[:stripe][:publishable_key] %>');
+    </script>
   </head>
 
   <body class='<%= @layout_class %>'>
