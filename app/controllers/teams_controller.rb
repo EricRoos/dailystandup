@@ -83,6 +83,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(:id, :name, survey_attributes: [ :id, survey_questions_attributes: [:text, :id] ])
+      params.require(:team).permit(:id, :name, survey_attributes: [ :id, survey_questions_attributes: [:text, :id, :_destroy] ])
     end
 end

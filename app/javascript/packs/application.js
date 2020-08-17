@@ -7,13 +7,15 @@ import $ from 'jquery';
 global.$ = $;
 global.jQuery = $;
 import {} from 'jquery-ujs'
-//require("@rails/ujs").start()
+require("@rails/ujs").start()
+import 'cocoon-js'
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("deps")
 require("components")
 require("app")
+
 
 
 

@@ -18,6 +18,8 @@ gem 'sidekiq'
 gem 'cells-rails'
 gem 'cells-erb'
 gem 'dotenv-rails'
+gem 'cocoon'
+gem 'stripe'
 
 
 # Use SCSS for stylesheets

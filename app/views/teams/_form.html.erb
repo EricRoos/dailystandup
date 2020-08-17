@@ -24,11 +24,9 @@
     <fieldset>
       <legend><h2>Standup Questions</h2></legend>
       <%= survey_fields.fields_for :survey_questions do |survey_question_fields| %>
-        <div class="field">
-          <%= survey_question_fields.label :text %>
-          <%= survey_question_fields.text_field :text %>
-        </div>
+        <%= render partial: 'survey_question_fields', locals: { f: survey_question_fields } %> 
       <% end %>
+      <%= link_to_add_association 'add question', survey_fields, :survey_questions %>
     </fieldset>
   <% end %>
 

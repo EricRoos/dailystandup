@@ -92,6 +92,7 @@ GEM
       actionpack (>= 5.0)
       cells (>= 4.1.6, < 5.0.0)
     childprocess (3.0.0)
+    cocoon (1.2.14)
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
     crass (1.0.6)
@@ -325,6 +326,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.23.1)
     sys-uname (1.2.1)
       ffi (>= 1.0.0)
     temple (0.8.2)
@@ -375,6 +377,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   cells-erb
   cells-rails
+  cocoon
   cucumber-rails
   dalli
   database_cleaner
@@ -401,6 +404,7 @@ DEPENDENCIES
   sidekiq
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   timecop
   turbolinks (~> 5)
   tzinfo-data
