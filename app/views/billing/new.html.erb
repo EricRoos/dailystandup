@@ -14,7 +14,6 @@
   var cardButton = document.getElementById('card-button');
   var clientSecret = cardButton.dataset.secret;
   cardButton.addEventListener('click', function(ev) {
-  console.log('here');
     ev.preventDefault();
     stripe.confirmCardSetup(
       clientSecret,
@@ -31,8 +30,7 @@
         // Display error.message in your UI.
         console.error(result.error)
       } else {
-        console.log('added a card');
-        alert('card added')
+        window.location = '/billing/success'
       }
     });
   });

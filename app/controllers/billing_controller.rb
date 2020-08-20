@@ -6,4 +6,8 @@ class BillingController < ApplicationController
       customer: payment_profile.profile_id
 		})
   end
+
+  def success
+    redirect_to root_path, notice: 'Card Details Updated'
+  end
 end

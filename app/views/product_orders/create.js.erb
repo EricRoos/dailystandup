@@ -1,0 +1,7 @@
+stripe
+  .confirmCardPayment("<%= @intent.client_secret %>", {
+    payment_method: "<%= @product_order.payment_method_id %>"
+  })
+  .then(function(result) {
+    window.location = "<%= confirmation_product_order_path(@product_order, payment_confirmation_id: '') %>" + result.paymentIntent.id;
+  });

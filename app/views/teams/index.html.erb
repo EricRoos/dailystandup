@@ -1,4 +1,7 @@
 <h1>My Teams</h1>
-
-<%= render partial: 'layouts/shared/app_button', locals: { text: 'Add Team', path: new_team_path, icon: 'plus' } %>
+<% if current_user.can_add_teams? %>
+  <%= render partial: 'layouts/shared/app_button', locals: { text: 'Add Team', path: new_team_path, icon: 'plus', disabled: true } %>
+<% else %>
+  <%= render partial: 'layouts/shared/app_button', locals: { text: 'Purchase More Teams', path: new_product_order_path(sku: Constants::Skus::IncreaseTeamLimit), icon: 'plus', disabled: true } %>
+<% end %>
 <%= render partial: 'collection', locals:  { teams: @teams } %>

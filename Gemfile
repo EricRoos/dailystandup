@@ -20,6 +20,7 @@ gem 'cells-erb'
 gem 'dotenv-rails'
 gem 'cocoon'
 gem 'stripe'
+gem 'money'
 
 
 # Use SCSS for stylesheets

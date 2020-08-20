@@ -11,20 +11,21 @@ class PaymentProcessor
     }).data.map { |c| c.to_h.slice(:id).merge(c["card"].to_h.slice(:exp_month, :exp_year, :last4)) }
   end
 
-	def charge_customer(customer_id, payment_method_id, amount)
-		payment_methods = Stripe::PaymentMethod.list(
-			customer: customerId,
-			type: 'card'
-		)
-
-		# Charge the customer and payment method immediately
-		Stripe::PaymentIntent.create(
-			amount: amount,
-			currency: 'usd',
-			customer: customer_id,
-			payment_method: payment_method_id,
-			off_session: true,
-			confirm: true
-		)
+	def create_payment_intent(customer_id, amount, metadata= {})
+    Stripe::PaymentIntent.create({
+      customer: customer_id,
+      amount: amount,
+      currency: 'usd',
+      metadata: metadata.merge({application_source: 'dailystandup.io'})
+    })
 	end
+
+  def fetch_payment(payment_id)
+    payment = Stripe::PaymentIntent.retrieve(payment_id)
+    {
+      succeeded: payment.status == "succeeded",
+      status: payment.status,
+      meta: payment.metadata.to_h.slice(:product_order_id)
+    }
+  end
 end
