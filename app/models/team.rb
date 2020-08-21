@@ -4,6 +4,9 @@ class Team < ApplicationRecord
   accepts_nested_attributes_for :survey, update_only: true
   has_many :activities, dependent: :destroy
 
+  has_one :payment_profile, as: :payment_owner
+  has_many :product_orders, as: :payer
+
   after_create :post_event
 
   def creator

@@ -1,5 +1,5 @@
-<% product = Product.where(sku: params[:sku]).first %>
-<%= form_with model: current_user.product_orders.build(product: product) do |f| %>
+<% model = @product_order %>
+<%= form_with model: model do |f| %>
   <%= f.hidden_field :product_id %>
 	<!-- component -->
 	<div class="flex justify-center my-6">
@@ -16,7 +16,7 @@
 									Product
 								</div>
 								<div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-									<%= product.sku %>
+									<%= model.product.sku %>
 								</div>
 							</div>
 							<div class="flex justify-between border-b">
@@ -24,41 +24,50 @@
 									Subtotal
 								</div>
 								<div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-									<%= Money.new(product.price_cents, "USD").format %>
+									<%= Money.new(model.product.price_cents, "USD").format %>
 								</div>
 							</div>
-							<div class="flex justify-between pt-4 border-b">
-								<div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
-									Tax
-								</div>
-								<div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-									<% tax_rate = 0.0825 %>
-									<% tax_amount =  product.price_cents * tax_rate %>
-									<%= Money.new(tax_amount, "USD").format %>
-								</div>
-							</div>
-							<div class="flex justify-between pt-4 border-b">
-								<div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
-									Total
-								</div>
-								<div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-									<%= Money.new(product.price_cents + tax_amount, "USD").format %>
-								</div>
-							</div>
+              <% if current_user.payment_profile.present? %>
+                <div class="flex justify-between pt-4 border-b">
+                  <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                    Tax
+                  </div>
+                  <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                    <% tax_rate = 0.0825 %>
+                    <% tax_amount =  model.product.price_cents * tax_rate %>
+                    <%= Money.new(tax_amount, "USD").format %>
+                  </div>
+                </div>
+                <div class="flex justify-between pt-4 border-b">
+                  <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                    Total
+                  </div>
+                  <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                    <%= Money.new(model.product.price_cents + tax_amount, "USD").format %>
+                  </div>
+                </div>
+              <% end %>
 							<div class="flex justify-between pt-4 border-b">
 								<div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
 									PaymentMethod
 								</div>
                 <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                  <% payment = PaymentProcessor.new.list_available_cards(current_user.payment_profile.profile_id).map { |p| [ "XXXX#{p[:last4]}", p[:id] ] }.first %>
-                  <%= f.hidden_field :payment_method_id, value: payment[1] %>
-                  <%= payment[0] %>
-                  <br/><small><%= link_to 'Change', new_billing_path(back: Base64.encode64(request.original_url)) %></small>
+                  <% if current_user.payment_profile.present? %>
+                    <% payment = PaymentProcessor.new.list_available_cards(current_user.payment_profile.profile_id).map { |p| [ "XXXX#{p[:last4]}", p[:id] ] }.first %>
+                    <%= f.hidden_field :payment_method_id, value: payment[1] %>
+                    <%= payment[0] %>
+                    <br/><small><%= link_to 'Change', new_billing_path(back: Base64.encode64(request.original_url)) %></small>
+                  <% else %>
+                    <%= link_to 'Add Card', new_billing_path(back: Base64.encode64(request.original_url)) %>
+                  <% end %>
 								</div>
-							</div>
-							<%= f.submit value: 'Submit Order', class: "flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none" do %>
-								<svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
-							<% end %>
+              </div>
+              <% byebug %>
+              <% if model.valid? %>
+                <%= f.submit value: 'Submit Order', class: "flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none" do %>
+                  <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
+                <% end %>
+              <% end %>
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 class ProductOrder < ApplicationRecord
   belongs_to :product
-  belongs_to :user
 
+  belongs_to :payer, polymorphic: true
   delegate :price_cents, to: :product
 
   scope :confirmed, -> { where(confirmed: true) }

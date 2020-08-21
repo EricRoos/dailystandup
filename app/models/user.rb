@@ -8,8 +8,9 @@ class User < ApplicationRecord
 
   has_many :team_members
   has_many :teams, through: :team_members
-  has_one :payment_profile
-  has_many :product_orders
+
+  has_one :payment_profile, as: :payment_owner
+  has_many :product_orders, as: :payer
 
   def full_name
     "#{first_name} #{last_name}"

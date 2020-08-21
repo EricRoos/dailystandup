@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_041132) do
+ActiveRecord::Schema.define(version: 2020_08_21_210535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,24 +40,26 @@ ActiveRecord::Schema.define(version: 2020_08_18_041132) do
   end
 
   create_table "payment_profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "provider"
     t.string "profile_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_payment_profiles_on_user_id"
+    t.string "payment_owner_type"
+    t.bigint "payment_owner_id"
+    t.index ["payment_owner_type", "payment_owner_id"], name: "poly_payment_owner"
   end
 
   create_table "product_orders", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "payment_method_source"
     t.string "payment_method_id"
     t.boolean "confirmed"
+    t.string "payer_type"
+    t.bigint "payer_id"
+    t.index ["payer_type", "payer_id"], name: "index_product_orders_on_payer_type_and_payer_id"
     t.index ["product_id"], name: "index_product_orders_on_product_id"
-    t.index ["user_id"], name: "index_product_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -150,9 +152,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_041132) do
 
   add_foreign_key "activities", "teams"
   add_foreign_key "likes", "team_members"
-  add_foreign_key "payment_profiles", "users"
   add_foreign_key "product_orders", "products"
-  add_foreign_key "product_orders", "users"
   add_foreign_key "standup_reports", "team_members"
   add_foreign_key "survey_questions", "surveys"
   add_foreign_key "survey_responses", "standup_reports"
