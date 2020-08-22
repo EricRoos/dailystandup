@@ -15,4 +15,4 @@ push_image:
 deploy:
 	eb deploy dailystandup-prod-vpc
 deploy_pipeline:
-	make build push_image migrate_db deploy
+	make build push_image migrate_db
